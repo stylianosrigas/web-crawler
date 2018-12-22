@@ -17,16 +17,8 @@ class Mapping:
     """
     def __init__(self, value, parent=None):
         self.value = value
-        # self.next_links = set()
         self.next_nodes = set()
         self.parent_node = parent
-
-    # def add_next_links(self, link_list):
-    #     """
-    #     This function adds to the current node object the links to be examined
-    #     :param link_list: The list of links to be examined for a specific node
-    #     """
-    #     self.next_links = self.next_links.union(set(link_list))
 
     def add_next_nodes(self, node_list):
         """
@@ -186,9 +178,6 @@ class Web_Crawler():
 
                 logging.debug('Removing URL duplicates...')
                 new_links_to_visit = self.remove_list_duplicates(new_links_to_visit)
-
-                # logging.debug('Updating parent node with all new links to visit...')
-                # node.add_next_links(new_links_to_visit)
 
                 logging.debug('Setting up new links in tree and setting the parental link...')
                 new_entries = await self.tree_update(new_links_to_visit, node)
