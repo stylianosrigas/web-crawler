@@ -1,8 +1,8 @@
 # Web Crawler
-This is a Web Crawler app that returns the url mapping of a specified website.
+This is a Web Crawler app that returns the url mapping of a specified website, based on the desired scanning depth.
 
 ## Solution explained
-For the solution of this application a selection of tools was made to make things faster and more efficient. ***Python3*** language was used for coding, ***aiohttp*** package to handle the url connection and data extraction, as well as Python3 supported ***asyncio*** package for running tasks in an asynchronous way.
+For the development of this application a selection of tools was made based on language knowledge and creation of a fast and efficient application. ***Python3*** language was used for coding, ***aiohttp*** package to handle the url connection and data extraction, as well as Python3 supported ***asyncio*** package for running tasks in an asynchronous way.
 
 The idea is that when the app initially runs, it moves to the first depth layer of the website and creates a list of all the available links that are within the accepted format. Once this job is done if the depth value is set to a higher level than 1, a pool of available links is created that are picked asynchronously and each one of them is scanned for connected links. The same process is followed until the depth of scanning reaches the desired depth.
 
