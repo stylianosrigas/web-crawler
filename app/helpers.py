@@ -14,7 +14,7 @@ class Helpers():
         parser.add_argument('-f','--file', help='Specify this argument if you want to export the map in a file', required=False)
         parser.add_argument('-u','--url', help='Specify this argument to define the url that should be crawled', required=True)
         parser.add_argument('-d','--depth', help='Specify this argument to define the depth to be examined', required=False, type=int, default=3)
-        parser.add_argument('-t','--tasks', help='Specify this argument to define the number of tasks to run assynchronously', required=False, type=int, default=120)
+        parser.add_argument('-t','--tasks', help='Specify this argument to define the number of tasks to run assynchronously', required=False, type=int, default=80)
         parser.add_argument('-o','--output', help='Specify this argument to define if cli output should be included for mapping', required=False, default=False)
         args = vars(parser.parse_args())
         return args
