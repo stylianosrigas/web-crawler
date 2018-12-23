@@ -18,12 +18,12 @@ def main():
     loop = asyncio.get_event_loop()
     now = datetime.now()
     logging.info('************************* The Crawler *************************')
-    logging.info('Initialization variables:\n URL -> %s\n DEPTH FACTOR -> %s\n SPEED FACTOR -> %s' %(args['url'], args['depth'], args['speed']))
-    map_object = loop.run_until_complete(Web_Crawler(args['url'], args['depth'], args['speed']).web_crawler())
+    logging.info('Initialization variables:\n URL -> %s\n MAX DEPTH -> %s\n MAX TASKS -> %s' %(args['url'], args['depth'], args['tasks']))
+    map_object = loop.run_until_complete(Web_Crawler(args['url'], args['depth'], args['tasks']).web_crawler())
     loop.close()
     url_map = map_object[0]
     links_examined = map_object[1]
-    if args['cli_output']:
+    if args['output']:
         Helpers().visualise_results_cli(url_map)
     total_time_needed = (datetime.now() - now).total_seconds()
     logging.info('The total number of links examined -> %s' % int(links_examined))

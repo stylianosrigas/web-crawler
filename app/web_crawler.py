@@ -33,7 +33,7 @@ class Web_Crawler():
     """
     This class is the engine of the Web Crawler.
     """
-    def __init__(self, search_url, depth, speed):
+    def __init__(self, search_url, depth, max_tasks):
         """
         Init function for Web_Crawler Class. This is the main class that includes
         all the methods that will be used to build the mapping of a specific url
@@ -49,12 +49,12 @@ class Web_Crawler():
         #This list of links will be used to avoid rescaning of the same entries
         self.examined_links = []
 
-        self.speed_factor = speed
+        self.max_tasks = max_tasks
 
         self.max_depth = depth
 
         #This list includes keywords of links not to follow
-        self.not_wanted = ['twitter', 'facebook', 'linkedin', 'mailto', 'url=']
+        self.not_wanted = ['twitter', 'facebook', 'linkedin', 'mailto', 'url=', 'whatsapp', 'fb-messenger']
 
 
     def list_cleanup(self, multitask_results, results):
@@ -87,10 +87,10 @@ class Web_Crawler():
         :param size: The size of the links to be examined.
         :return: The number of tasks
         """
-        if size == 1:
+        if size < self.max_tasks:
             return size
         else:
-            return round(size/self.speed_factor)
+            return self.max_tasks
 
 
     def check_url(self, links, url_to_analyze):
@@ -104,7 +104,8 @@ class Web_Crawler():
         for link in links:
             if (link != None) and (not link == url_to_analyze):
                 if (link.startswith('/')) and (link != '/') and (not link.startswith('/-')) and (not 'email' in link):
-                    link = self.initial_domain + link
+                    domain = url_to_analyze.split('/')[0]+'//'+ url_to_analyze.split('/')[2]
+                    link = domain + link
                     urls.append(link)
                 elif self.initial_domain.split("//")[1] in link:
                     check = True
@@ -218,7 +219,7 @@ class Web_Crawler():
         depth = 0
         while crawler_status:
             results = []
-            logging.info('Links to analyze -> %s in depth -> %s' % (len(self.links_to_visit), depth))
+            logging.info('Links to analyze -> %s' % (len(self.links_to_visit)))
             while len(self.links_to_visit) > 0:
                 speed = self.dynamic_speed(len(self.links_to_visit))
                 tasks = [self.analyze_node(self.links_to_visit.pop()) for task in range(speed)]
