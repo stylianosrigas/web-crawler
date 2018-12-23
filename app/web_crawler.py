@@ -1,10 +1,8 @@
 import asyncio
 import itertools
-import time
 import logging
-from datetime import datetime
-
 import aiohttp
+
 from bs4 import BeautifulSoup
 
 logging.basicConfig(level=logging.INFO)

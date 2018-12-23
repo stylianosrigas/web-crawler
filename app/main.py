@@ -2,7 +2,6 @@ import asyncio
 import logging
 
 from datetime import datetime
-
 from web_crawler import Web_Crawler
 from helpers import Helpers
 
