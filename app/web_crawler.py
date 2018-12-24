@@ -100,19 +100,23 @@ class Web_Crawler():
         """
         urls = []
         for link in links:
-            if (link != None) and (not link == url_to_analyze):
-                if (link.startswith('/')) and (link != '/') and (not link.startswith('/-')) and (not 'email' in link):
-                    domain = url_to_analyze.split('/')[0]+'//'+ url_to_analyze.split('/')[2]
-                    link = domain + link
-                    urls.append(link)
-                elif self.initial_domain.split("//")[1] in link:
-                    check = True
-                    for check_value in self.not_wanted:
-                        if check_value in link:
-                            check = False
-                            break
-                    if check:
+            #Cleaning unwanted character
+            if (link != None):
+                if link.endswith('/'):
+                    link = (link[:(len(link)-1)])
+                if (not link == url_to_analyze):
+                    if (link.startswith('/')) and (link != '/') and (not link.startswith('/-')) and (not 'email' in link):
+                        domain = url_to_analyze.split('/')[0]+'//'+ url_to_analyze.split('/')[2]
+                        link = domain + link
                         urls.append(link)
+                    elif self.initial_domain.split("//")[1] in link:
+                        check = True
+                        for check_value in self.not_wanted:
+                            if check_value in link:
+                                check = False
+                                break
+                        if check:
+                            urls.append(link)
         return urls
 
 
