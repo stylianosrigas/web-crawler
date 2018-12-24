@@ -6,7 +6,7 @@ from app.web_crawler import Web_Crawler
 class Test_Web_Crawler(object):
 
     def setup_method(self):
-        self.init = Web_Crawler("www.test.com", 1, 1)
+        self.init = Web_Crawler("www.test.com", 1, 120)
         self.loop = asyncio.get_event_loop()
 
     def test_list_cleanup(self):
@@ -16,9 +16,9 @@ class Test_Web_Crawler(object):
         assert self.init.remove_none_elements_from_list(["Test", None]) == ["Test"]
 
     def test_dynamic_speed(self):
-        self.init.speed_factor = 2
         assert self.init.dynamic_speed(1) == 1
-        assert self.init.dynamic_speed(500) == 250
+        assert self.init.dynamic_speed(119) == 119
+        assert self.init.dynamic_speed(500) == 120
 
     def test_check_url(self):
         self.init.initial_domain = "https://www.test_url.com"
