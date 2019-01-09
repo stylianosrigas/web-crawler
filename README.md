@@ -15,7 +15,7 @@ The idea is that when the app initially runs, it moves to the first depth layer 
 Several parameters can be specified, while running the Web Crawler app.
 
 * **--file** This parameter is not required to run the Web Crawler, but when specified with a file name the results will be exported in this file.
-* **-url** This parameter is required to run the Web Crawler. It is used to specify the url that should be crawled.
+* **--url** This parameter is required to run the Web Crawler. It is used to specify the url that should be crawled.
 * **--depth** This parameter is not required to run the Web Crawler but a default value will be applied in any case. It is used to specify the depth of crawling.
 * **--tasks** This parameter is not required to run the Web Crawler but a default value of 120 tasks will be applied in any case. It is used to specify the number of tasks to run asynchronously.
 * **--output** This parameter is not required to run the Web Crawler, but when specified as True the results will be exported in the terminal window.
