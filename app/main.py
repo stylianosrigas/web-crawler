@@ -5,7 +5,7 @@ from datetime import datetime
 from web_crawler import Web_Crawler
 from helpers import Helpers
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(format='%(asctime)s: %(levelname)s - %(message)s', level=logging.INFO)
 
 
 def main():

@@ -5,7 +5,7 @@ import aiohttp
 
 from bs4 import BeautifulSoup
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(format='%(asctime)s: %(levelname)s - %(message)s', level=logging.INFO)
 
 ############################################################################################
 class Mapping:
